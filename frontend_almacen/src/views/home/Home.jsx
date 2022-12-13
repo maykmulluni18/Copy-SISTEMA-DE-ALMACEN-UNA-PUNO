@@ -4,6 +4,7 @@ import { getMe } from "../home/auth/Authen"
 import React, { useEffect } from 'react';
 import Layout from './Layout';
 import Welcome from './Welcome';
+import Stocks from './stocks/Stocks';
 const Home = () => {
 
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const Home = () => {
   return (
     <Layout>
       <Welcome />
+      <Stocks />
     </Layout>
 
   );

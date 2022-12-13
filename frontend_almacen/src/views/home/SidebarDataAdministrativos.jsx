@@ -1,14 +1,10 @@
-import InventoryIcon from '@mui/icons-material/Inventory';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import SummarizeIcon from '@mui/icons-material/Summarize';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 export const SidebarDataAdministrativos = [
     {
-        title: 'Lista de Administrativos',
+        title: 'Lista Administrativos',
         path:'/administrativos',
-        icon: <InventoryIcon />,
+        icon: <SupervisorAccountIcon />,
         cName: 'nav-text'
 
     },

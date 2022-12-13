@@ -31,6 +31,8 @@
     "read-excel-file": "^5.5.3",
     "sequelize": "^6.23.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sequelize-cli": "^6.5.2"
+  },
   "description": ""
 }

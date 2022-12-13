@@ -1,27 +1,26 @@
-
 import TablaMetas from "./TablaMetas";
 import Layout from "../../Layout";
-import { useState, useEffect, CSSProperties } from "react"
-import ClipLoader from "react-spinners/ClipLoader";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from "../../auth/Authen"
+import React, { useEffect } from 'react';
 
-/*const override: CSSProperties = {
-    
-    position: "absolute",
-    top: "40%",
-    left: "48%",
-    color: "green",
-  };
-  
-*/
 const ListinfoMetas = () => {
-    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { isError } = useSelector((state) => state.auth);
+
+
     useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 5000)
-    }, [])
-    let [color, setColor] = useState("#ffffff");
+        dispatch(getMe());
+    }, [dispatch]);
+
+
+    useEffect(() => {
+        if (isError) {
+            navigate("/");
+        }
+    }, [isError, navigate]);
 
     return (
         <Layout>

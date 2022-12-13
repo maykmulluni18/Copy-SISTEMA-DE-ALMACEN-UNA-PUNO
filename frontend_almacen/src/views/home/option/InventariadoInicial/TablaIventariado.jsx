@@ -6,7 +6,6 @@ import { GridToolbar } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import Swal from 'sweetalert2';
 import axios from "axios";
 import ExcelImportInventariado from "./ImportDataExel/ExcelImportInventariado";
@@ -27,8 +26,6 @@ const TablaInventariado = () => {
   };
 
   const deleteInventariado = async (id) => {
-    const res = await axios.delete(`${URI}${id}`)
-    if (res.status === 200) {
       Swal.fire({
         title: 'Esta Seguro que Desea Eliminar?',
         icon: 'warning',
@@ -38,18 +35,18 @@ const TablaInventariado = () => {
         confirmButtonText: 'Si, Eliminar!',
         cancelButtonText: 'No, Cancelar',
         timer: 15500
-      }).then((result) => {
+      }).then( async (result) => {
         if (result.isConfirmed) {
           Swal.fire({
             title: 'Eliminado!',
             icon: 'success',
             timer: 5500
           })
+          const res = await axios.delete(`${URI}${id}`)
           getInventariado(res.data)
           
         }
       })
-    }
   }
 
 

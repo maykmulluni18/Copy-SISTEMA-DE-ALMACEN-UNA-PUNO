@@ -1,10 +1,10 @@
-import InventoryIcon from '@mui/icons-material/Inventory';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 export const SidebarDataUsers = [
     {
-        title: 'Lista de usuarios - admin',
+        title: 'Lista de Usuarios',
         path:'/usuarios-adminstradores',
-        icon: <InventoryIcon />,
+        icon: <GroupAddIcon />,
         cName: 'nav-text'
 
     },

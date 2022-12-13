@@ -30,7 +30,7 @@ const CrearIneventariado_cont = () => {
 
     const Inventario = async (event) => {
         event.preventDefault();
-        for (let i = 0; i < detailss.length; i++) {
+        for (let i = 0; i < detailss?.length; i++) {
             const respon = await axios.post(URI,
                 {
                     item: detailss[i].item,

@@ -8,10 +8,10 @@ import { Select as MultiSelect } from '@mui/material';
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./crearneasentradas.scss"
+import FilterAdministrativos from './FilterAdministrativos';
+import NombreAdministrativo from './NombreAdministrativo';
 
 const URI = 'http://localhost:8000/neasentradas/'
-
-const URI1 = 'http://localhost:8000/user/'
 
 const URI3 = 'http://localhost:8000/sedes/'
 
@@ -25,14 +25,9 @@ const CrearNeasEntradas_cont = () => {
         const res = await axios.get(URI3)
         setSedes(res.data)
     }
-    const getUsuario = async () => {
-        const res = await axios.get(URI1)
-        setUsuario(res.data)
-    }
+
     useEffect(() => {
         getSedes()
-        getUsuario()
-        Neas_Entradas()
     }, [])
 
 
@@ -119,9 +114,9 @@ const CrearNeasEntradas_cont = () => {
                 <div className="cont_form_bienes">
                     <div className="right">
                         <form onSubmit={Neas_Entradas}>
+  
                             <div className='formInput'>
-                                <label>Solicitante Id:{id_administradores.nombres}</label>
-
+                                <label>Solicitante Id</label>
                                 <input
                                     type="text"
                                     list="data1"
@@ -130,17 +125,7 @@ const CrearNeasEntradas_cont = () => {
                                     onChange={selectAdministrativo}
                                     required
                                 />
-                                <datalist className='datalistt' id="data1">
-                                    {
-                                        usuario
-                                            .map(res => {
-                                                return (
-                                                    <option className='options' key={res.id} value={res.id}> {res.nombres} {res.apellido_paterno} {res.apellido_materno}</option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
+                                <FilterAdministrativos/>
                             </div>
                             <div className='formInput'>
                                 <label>Sedes Id</label>

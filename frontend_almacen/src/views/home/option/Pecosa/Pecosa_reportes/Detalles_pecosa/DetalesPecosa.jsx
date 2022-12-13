@@ -1,176 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { DataGrid } from '@mui/x-data-grid';
-import { useNavigate, useParams } from 'react-router-dom';
 import Layout from "../../../../Layout";
-import { Link } from "react-router-dom";
-import "./detallesreportespecosa.scss";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from "../../../../auth/Authen"
+import DetallesPecosa_cont from "./DetalesPecosa_cont";
 
-const URI = 'http://localhost:8000/pecosapedidos/'
-
-const URI1 = 'http://localhost:8000/pecosabienespedidos/'
-
-
-const columnsb = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    {
-        field: 'U. Medida',
-        headerName: 'U. Medida',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 150,
-        valueGetter: (params) =>
-            `${params.row.biene.unidad_de_medida}`,
-    },
-    {
-        field: 'Descripcion',
-        headerName: 'Descripcion',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 450,
-        valueGetter: (params) =>
-            `${params.row.biene.description}`,
-    },
-    { field: 'cuenta_contable', headerName: 'Cuenta Contable', width: 230 },
-    { field: 'cantidad', headerName: 'Cantidad', width: 100 },
-    { field: 'p_unitario', headerName: 'P.Unitario', width: 100 },
-    {
-        field: 'P.Total',
-        headerName: 'P.Total',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 150,
-        valueGetter: (params) =>
-            `${params.row.cantidad}` * `${params.row.p_unitario}`,
-    },
-    { field: 'observaciones', headerName: 'Observaciones', width: 270 },
+const  DetalesPecosa = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { isError } = useSelector((state) => state.auth);
 
 
-];
-
-
-const DetallesPecosa = () => {
     useEffect(() => {
-        getPedidosPecosa()
-        getPecosaBienes()
-    }, [])
-    const [dependencias, setDependencias] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
-    const [fecha, setFecha] = useState('')
-    const [almacen, setAlmacen] = useState('')
-    const [id_administradores, setIdAdministradores] = useState('')
-    const [id_metas, setIdMetas] = useState('')
-    const { id } = useParams()
+        dispatch(getMe());
+    }, [dispatch]);
 
 
-
-
-    const getPedidosPecosa = async () => {
-
-        const res = await axios.get(URI + id,)
-        setDependencias(res.data.dependencias)
-        setIdSedes(res.data.sede.sede)
-        setAlmacen(res.data.almacen)
-        setFecha(res.data.fecha)
-        setIdAdministradores(res.data.usuario.nombres + ' ' +
-            res.data.usuario.apellido_paterno + ' ' +
-            res.data.usuario.apellido_materno)
-        setIdMetas(res.data.Meta.obra)    
-    }
-
-
-    const [pecosaPedidoId, setPecosaPedidosId] = useState([])
-
-    const getPecosaBienes = async () => {
-        const res = await axios.get(URI1 + id,)
-        console.log(res.data)
-        setPecosaPedidosId(res.data)
-    }
-
+    useEffect(() => {
+        if (isError) {
+            navigate("/");
+        }
+    }, [isError, navigate]);
 
     return (
         <Layout>
-            <div className="Tabledata_pecosa_reportes_detalles">
-                <div className="top">
-                    <h1>Inventario de Pecosas de Oficina  de abastecimiento: {id}</h1>
-                    <div className='crearButtom_B'>
-                        <Link to={'../'} >
-                            <button className='button2'> Salir</button>
-                        </Link>
-                    </div>
-                </div>
-                <div className="cont_detalls">
-                    <div className='form_cont'>
-                        <div className='formInput'>
-
-                            <strong>Dependencias Solicitante: </strong>
-                            <input
-                                value={dependencias}
-                                onChange={(e) => setDependencias(e.target.value)}
-                                type="text"
-                            />
-                        </div>
-                        <div className='formInput'>
-
-                            <strong>Solicitante: </strong>
-                            <input
-                                value={id_administradores}
-                                onChange={(e) => setIdAdministradores(e.target.value)}
-                                type="text"
-                            />
-                        </div>
-                        <div className='formInput'>
-
-                            <strong>Obra: </strong>
-                            <input
-                                value={id_metas}
-                                onChange={(e) => setIdMetas(e.target.value)}
-                                type="text"
-                            />
-                        </div>
-                        <div className='formInput'>
-
-                            <strong>Con Destino a: </strong>
-                            <input
-                                value={id_sedes}
-                                onChange={(e) => setIdSedes(e.target.value)}
-                            />
-                        </div>
-                        <div className='formInput'>
-
-                            <strong>Solicitante Entrgar a: </strong>
-                            <input
-                                value={almacen}
-                                onChange={(e) => setAlmacen(e.target.value)}
-                            />
-                        </div>
-                        <div className='formInput'>
-
-                            <strong>Fecha: </strong>
-                            <input
-                                value={fecha}
-                                onChange={(e) => setFecha(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="Tabledata">
-                    <div className="dataTitle">
-                        Inventario Oficina de de abastecimiento
-
-                    </div>
-                    <div style={{ height: 400, width: '100%' }}>
-                        <DataGrid
-                            rows={pecosaPedidoId}
-                            columns={columnsb}
-
-                        />
-                    </div>
-                </div>
-
-            </div>
+            <DetallesPecosa_cont />
         </Layout>
     )
 }
 
-export default DetallesPecosa
+export default DetalesPecosa
+

@@ -8,7 +8,6 @@ import Swal from 'sweetalert2'
 import { useState, useEffect } from 'react'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import "./TablaPecosaBienes.scss"
 
 
@@ -29,8 +28,6 @@ const TablaPecosaBienes = () => {
 
 
     const deletePecosaBienes = async (id) => {
-        const res = await axios.delete(`${URI}${id}`)
-        if (res.status === 200) {
             Swal.fire({
               title: 'Esta Seguro que Desea Eliminar?',
               icon: 'warning',
@@ -40,18 +37,19 @@ const TablaPecosaBienes = () => {
               confirmButtonText: 'Si, Eliminar!',
               cancelButtonText: 'No, Canselar',
               timer: 15500
-            }).then((result) => {
+            }).then( async (result) => {
               if (result.isConfirmed) {
                 Swal.fire({
                   title: 'Eliminado!',
                   icon: 'success',
                   timer: 5500
                 })
+                const res = await axios.delete(`${URI}${id}`)
                 getPecosaBienes(res.data)
 
               }
             })
-          }
+          
     }
 
 

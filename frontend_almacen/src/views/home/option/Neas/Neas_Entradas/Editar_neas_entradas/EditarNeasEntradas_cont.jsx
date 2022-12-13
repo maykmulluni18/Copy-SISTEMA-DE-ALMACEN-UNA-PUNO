@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import Layout from "../../../../Layout";
 //import UNAP from "../UNAP.png";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./editarneasentradas.scss"
+import FilterAdministrativos from './FilterAdministrativos';
 
 const URI = 'http://localhost:8000/neasentradas/'
 
@@ -17,19 +17,14 @@ const URI3 = 'http://localhost:8000/sedes/'
 const EditarNeasEntradas_cont = () => {
 
     const [sedes, setSedes] = useState([])
-    const [usuario, setUsuario] = useState([])
 
     const getSedes = async () => {
         const res = await axios.get(URI3)
         setSedes(res.data)
     }
-    const getUsuario = async () => {
-        const res = await axios.get(URI1)
-        setUsuario(res.data)
-    }
+
     useEffect(() => {
         getSedes()
-        getUsuario()
         getNeasEntradas()
         Neas_Entradas()
     }, [])
@@ -132,17 +127,7 @@ const EditarNeasEntradas_cont = () => {
                                     onChange={selectAdministrativo}
                                     required
                                 />
-                                <datalist className='datalistt' id="data1">
-                                    {
-                                        usuario
-                                            .map(res => {
-                                                return (
-                                                    <option className='options' key={res.id} value={res.id}> {res.nombres} {res.apellido_paterno} {res.apellido_materno}</option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
+                               <FilterAdministrativos/>
                             </div>
                             <div className='formInput'>
                                 <label>Sedes Id</label>

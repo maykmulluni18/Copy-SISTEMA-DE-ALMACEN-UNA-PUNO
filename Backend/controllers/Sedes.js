@@ -1,5 +1,4 @@
 import ModelsSedes from "../models/ModelsSedes.js";
-
 export const getSedes = async (req, res) => {
     try {
         const sedes = await ModelsSedes.findAll()

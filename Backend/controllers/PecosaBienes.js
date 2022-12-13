@@ -1,11 +1,11 @@
 import ModelsPecosaBienes from "../models/ModelsPecosaBienes.js";
 import ModelsPecosaPedidos from "../models/ModelsPecosaPedidos.js";
-import ModelsBienes from "../models/ModelsBienes.js";
+import ModelsInvenInicial from "../models/ModelsInvenInicial.js";
 
 export const getPecosaBienes = async (req, res ) => {
     try {
         const pecosabienes = await ModelsPecosaBienes.findAll({
-            include: [ModelsBienes, ModelsPecosaPedidos]
+            include: [ModelsInvenInicial, ModelsPecosaPedidos]
             
         })
         res.json(pecosabienes) 
@@ -17,8 +17,8 @@ export const getPecosaBienes = async (req, res ) => {
 export const getPecosaBienesId = async (req, res) => {
     try {
         const pecosabien = await ModelsPecosaBienes.findAll({
-            where: {pecosaPedidoId: req.params.id},
-            include: [ModelsBienes, ModelsPecosaPedidos]
+            where: {id: req.params.id},
+            include: [ModelsInvenInicial, ModelsPecosaPedidos]
         })
         res.json(pecosabien[0])
     } catch (error) {

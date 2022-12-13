@@ -36,7 +36,6 @@ import DetallesPecosa from "./views/home/option/Pecosa/Pecosa_reportes/Detalles_
 import PdfReporte from "./views/home/option/Pecosa/Pecosa_reportes/Pdf_pecosa/PdfReporte";
 
 import CreateAdministrativos from "./views/home/option/usuarios/modalnewusers/CreateAdministrativos";
-
 import "./app.css"
 
 
@@ -70,7 +69,6 @@ function App() {
                 <Route path="/home" element={<Home />} />
 
                 <Route path="*" element={<Not_found_404 />} />
-
                 <Route path="/bienes">
                   <Route index element={<Bienes />} />
                   <Route path="created-bienes" element={<CreatedBienes />} />

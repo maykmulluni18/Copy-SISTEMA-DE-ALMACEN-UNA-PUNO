@@ -3,12 +3,12 @@ import * as React from 'react';
 import { DataGrid, esES } from "@mui/x-data-grid";
 import { userColumns } from "./DataS";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import { GridToolbar } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react'
 //import ModalEditUsers from "./modaleditusers/ModalEditUsers";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import Swal from 'sweetalert2';
 import axios from "axios";
 
@@ -16,6 +16,9 @@ const URI = 'http://localhost:8000/sedes/'
 
 
 const TableS = () => {
+
+  const { user } = useSelector((state) => state.auth)
+
   const [sedes, setSedes] = useState([])
 
   useEffect(() => {
@@ -27,7 +30,7 @@ const TableS = () => {
     setSedes(res.data)
   }
 
-  const deleteSedes =  (id) => {
+  const deleteSedes = (id) => {
     Swal.fire({
       title: 'Esta Seguro que Desea Eliminar?',
       icon: 'warning',
@@ -37,22 +40,22 @@ const TableS = () => {
       confirmButtonText: 'Si, Eliminar!',
       cancelButtonText: 'No, Canselar',
       timer: 15500
-  }) .then(async (result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-          Swal.fire({
-              title: 'Eliminado!',
-              icon: 'success',
-              timer: 5500
-          })
+        Swal.fire({
+          title: 'Eliminado!',
+          icon: 'success',
+          timer: 5500
+        })
 
-          await axios.delete(`${URI}${id}`)
-          getSedes()
+        await axios.delete(`${URI}${id}`)
+        getSedes()
 
       }
-  })
-          
+    })
 
- 
+
+
 
   }
 
@@ -65,25 +68,22 @@ const TableS = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton"><VisibilityIcon /></div>
-            </Link>
-
             <Link to={`edit/${params.id}`}>
               <div className="EditButton">
                 <EditIcon />
               </div>
             </Link>
+            {user && user.role === "admin" && (
+              <div className="cellAction">
 
-            <div className="cellAction">
-
-              <div
-                className="deleteButton"
-                onClick={() => deleteSedes(params.id)}
-              >
-                <DeleteIcon />
+                <div
+                  className="deleteButton"
+                  onClick={() => deleteSedes(params.id)}
+                >
+                  <DeleteIcon />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         );
       },

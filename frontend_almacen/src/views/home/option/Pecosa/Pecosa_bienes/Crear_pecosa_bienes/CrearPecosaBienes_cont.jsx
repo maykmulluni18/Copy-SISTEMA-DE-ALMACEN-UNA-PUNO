@@ -9,7 +9,7 @@ const URI = 'http://localhost:8000/pecosabienes/'
 
 const URI1 = 'http://localhost:8000/pecosapedidos/'
 
-const URI2 = 'http://localhost:8000/bienes/'
+const URI2 = 'http://localhost:8000/invetinicial/'
 
 const CrearPecosaBienes_cont = () => {
     const [pecosapedidos, setPecosaPedidos] = useState([])
@@ -39,10 +39,8 @@ const CrearPecosaBienes_cont = () => {
     const navigate = useNavigate()
     const [detailsspecosabienes, setDetaillsPecosaBienes] = useState([{
         pecosaPedidoId: "",
-        bieneId: "",
+        inventaridoInicialId: "",
         cantidad: "",
-        p_unitario: "",
-        cuenta_contable: "",
         observaciones: "",
         fecha: "",
 
@@ -59,10 +57,8 @@ const CrearPecosaBienes_cont = () => {
         for (let i = 0; i < detailsspecosabienes.length; i++) {
             const respon = await axios.post(URI, {
                 pecosaPedidoId: pecosaPedidoId,
-                bieneId: detailsspecosabienes[i].bieneId,
+                inventaridoInicialId: detailsspecosabienes[i].inventaridoInicialId,
                 cantidad: detailsspecosabienes[i].cantidad,
-                p_unitario: detailsspecosabienes[i].p_unitario,
-                cuenta_contable: detailsspecosabienes[i].cuenta_contable,
                 observaciones: detailsspecosabienes[i].observaciones,
                 fecha: detailsspecosabienes[i].fecha,
             })
@@ -93,7 +89,7 @@ const CrearPecosaBienes_cont = () => {
     const handleAdd = () => {
         setDetaillsPecosaBienes([...detailsspecosabienes, {
             pecosaPedidoId: "",
-            bieneId: "",
+            inventaridoInicialId: "",
             cantidad: "",
             p_unitario: "",
             cuenta_contable: "",
@@ -150,8 +146,8 @@ const CrearPecosaBienes_cont = () => {
                                                 <input
                                                     type="text" list="bienesp"
                                                     placeholder=''
-                                                    name='bieneId'
-                                                    value={value_cont.bieneId}
+                                                    name='inventaridoInicialId'
+                                                    value={value_cont.inventaridoInicialId}
                                                     onChange={(e) => handleSubmit(e, index)}
                                                     required
                                                 />
@@ -160,7 +156,7 @@ const CrearPecosaBienes_cont = () => {
                                                         bienes
                                                             .map(res => {
                                                                 return (
-                                                                    <option key={res.id} value={res.id}> {res.description} </option>
+                                                                    <option key={res.id} value={res.id}> {res.descripcion} </option>
                                                                 )
                                                             })
                                                     }
@@ -173,26 +169,6 @@ const CrearPecosaBienes_cont = () => {
                                                 <input
                                                     name='cantidad'
                                                     value={value_cont.cantidad}
-                                                    onChange={(e) => handleSubmit(e, index)} type="number"
-                                                    placeholder=''
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="formInput">
-                                                <label>Precio Unitario</label>
-                                                <input
-                                                    name='p_unitario'
-                                                    value={value_cont.p_unitario}
-                                                    onChange={(e) => handleSubmit(e, index)} type="number"
-                                                    placeholder=''
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="formInput">
-                                                <label>Cuenta Contable</label>
-                                                <input
-                                                    name='cuenta_contable'
-                                                    value={value_cont.cuenta_contable}
                                                     onChange={(e) => handleSubmit(e, index)} type="number"
                                                     placeholder=''
                                                     required

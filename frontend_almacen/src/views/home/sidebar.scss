@@ -1,32 +1,65 @@
-#leftCo {
-    position: fixed;
-    width: 150px;
-    background-color: #DDD;
-    font-size: 21px;
-    overflow-y: scroll;
-    top: 0;
-    bottom: 0;
+.Navar_cont {
+    .colorStyle {
+        background-color: red;
+    }
+
+    .Navar {
+        background: #ffffff;
+        color: #2c2e49;
+        font-size: 20px;
+
+        .contedn {
+            .img_cont {
+                .img {
+                    width: 50px;
+                    height: 50px;
+                    cursor: pointer;
+                    .userimg {
+                        border-radius: 50%;
+                        
+                    }
+                }
+            }
+            .item{
+                display: flex;
+                
+                cursor: pointer;
+                &:hover{
+                    background-color: rgba(31, 12, 82, 0.272);
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
 }
 
-.sidebar_grid {
-    /*transition: all .3s ease-out;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;]*/
+@media screen and (max-width: 1750px) {
+    .Navar_cont {
+        padding-bottom: 2rem;
 
-    //transition: all .3s ease-out;
-    //overflow: scroll;
-    //-webkit-overflow-scrolling: touch;
-    //position: relative;
+        .Navar {
+            .contedn{
+                .title_nav{
+                    display: none !important;
+                }
+
+            }
+            
+        }
+    }
+}
+
+
+.sidebar_grid {
     top: 64px;
-    //bottom: 0;
-    overflow: hidden;
     border-right: 0.5px solid rgba(247, 248, 252, 255);
     min-height: 100vh;
     max-height: calc(100vh - 9rem);
     flex: 1;
     background: #2c2e49;
     box-shadow: 1px 0px 4px rgb(255, 255, 255);
-    width: 18%;
+    width: 100%;
     height: 100%;
     gap: .2rem;
     overflow-y: scroll;
@@ -52,33 +85,49 @@
 
     }
 
+    .lines {
+        background-color: #6e6e6e;
+    }
+
+    .conten_list {
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+
+        .icon {
+            margin-right: .2rem;
+            color: rgb(255, 255, 255);
+        }
+
+    }
+
     .menu_div,
     .seting_div {
         .title_div {
+
             font-size: 24px;
             color: rgb(255, 255, 255);
             padding: 0rem 1.5rem .5rem;
         }
 
         .menu_list {
-            
+
             .list_item {
-                padding: .2rem 1.5rem;
+                padding: .4rem 1rem;
                 width: 100%;
                 position: relative;
-                
+
                 &::before {
                     position: absolute;
                     content: '';
-                    width: 10px;
+                    width: 5px;
                     height: 0%; //100%
-                    left: 0;
+                    left: -12px;
                     bottom: 0;
                     border-top-right-radius: 10px;
                     border-bottom-right-radius: 10px;
                     background: rgb(255, 255, 255);
                 }
-                
 
                 .menu_link {
                     color: rgb(255, 255, 255);
@@ -86,12 +135,14 @@
                     font-size: 20px;
 
                     .icon {
-                        margin-right: .2rem;
+                        margin-right: 1rem;
                         color: rgb(255, 255, 255);
+                        //padding: 0rem 1.5rem .5rem;
 
                         &:hover {
                             color: rgb(170, 170, 173);
-                            .active{
+
+                            .active {
                                 background: red;
                             }
                         }
@@ -100,7 +151,7 @@
                     .smallText {
                         font-weight: bold;
                         cursor: pointer;
-                        margin-left: .4rem;
+                        margin-left: 1.9rem;
 
                     }
                 }
@@ -119,6 +170,7 @@
     }
 
     .sidebarcar {
+        top: 180px;
         width: 95%;
         padding-left: 1rem;
         text-align: center;
@@ -143,13 +195,6 @@
             border-radius: 10px;
             overflow: hidden;
 
-            h3 {
-                font-size: 1.5rem;
-                margin-top: 1rem;
-                padding: 1rem 0;
-                font-weight: 800;
-                color: rgb(255, 255, 255);
-            }
 
             p {
                 font-size: 1rem;
@@ -162,6 +207,9 @@
                 position: relative;
                 color: #2c2e49;
                 z-index: 1000;
+                &:hover{
+                    color:  rgb(255, 255, 255);
+                }
             }
 
             .circle1,
@@ -190,7 +238,7 @@
     }
 }
 
-@media screen and (max-width: 950px) {
+/*@media screen and (max-width: 950px) {
     .sidebar_grid {
         padding-bottom: 2rem;
 
@@ -199,8 +247,8 @@
         }
     }
 }
-
-@media screen and (max-width: 900px) {
+*/
+/*@media screen and (max-width: 900px) {
     .sidebar_grid {
         .Logo {
             text-align: center;
@@ -232,6 +280,7 @@
                 .list_item {
                     .menu_link {
                         justify-content: center;
+
                         .icon {
                             font-size: 1.25rem;
                         }
@@ -241,17 +290,14 @@
 
         }
 
-        /* .title_div,
-        .smallText {
-            display: none;
-        }*/
-        
+
 
     }
 }
-
-@media screen and (max-width: 390px) {
+*/
+/*@media screen and (max-width: 390px) {
     .sidebar_grid {
+
         .menu_div,
         .seting_div {
             .menu_list {
@@ -270,3 +316,4 @@
         }
     }
 }
+*/

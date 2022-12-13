@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Layout from "../../../../Layout";
 //import UNAP from "../UNAP.png";
-import MenuItem from '@mui/material/MenuItem';
-import { Select as MultiSelect } from '@mui/material';
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./crearneasbienes.scss"

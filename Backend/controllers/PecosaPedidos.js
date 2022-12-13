@@ -1,14 +1,13 @@
 import ModelsPecosaPedidos from "../models/ModelsPecosaPedidos.js";
-import ModelsBienes from "../models/ModelsBienes.js";
 import ModelsAdministrativos from "../models/Models.js";
 import ModelsSedes from "../models/ModelsSedes.js";
 import ModelsPecosaBienes from "../models/ModelsPecosaBienes.js";
 import ModelsMetas from "../models/ModelsMetas.js";
-
+import ModelsInvenInicial from "../models/ModelsInvenInicial.js";
 export const getPecosaPedidos = async(req, res)=>{
     try {
         const pecosapedidos = await ModelsPecosaPedidos.findAll({
-            include: [ModelsAdministrativos, ModelsSedes, ModelsBienes, ModelsPecosaBienes, ModelsMetas],
+            include: [ModelsAdministrativos, ModelsSedes, ModelsInvenInicial, ModelsPecosaBienes, ModelsMetas],
         })
         res.json(pecosapedidos)
     } catch (error) {
@@ -21,7 +20,7 @@ export const getPecosaPedidosId = async(req, res) => {
     try {
         const pecosapedido = await ModelsPecosaPedidos.findAll({
             where: {id: req.params.id},
-            include: [ModelsAdministrativos, ModelsSedes, ModelsBienes, ModelsPecosaBienes, ModelsMetas]
+            include: [ModelsAdministrativos, ModelsSedes, ModelsInvenInicial, ModelsMetas]
         })
         console.log('respuesta',pecosapedido)
         res.json(pecosapedido[0])

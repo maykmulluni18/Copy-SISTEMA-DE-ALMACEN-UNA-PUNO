@@ -1,10 +1,9 @@
 import db from '../database/db.js';
 import { Sequelize } from "sequelize";
-import ModelsBienes from './ModelsBienes.js';
 import ModelsAdministrativos from './Models.js';
 import ModelsSedes from './ModelsSedes.js';
 import ModelsMetas from './ModelsMetas.js';
-import ModelsPecosaBienes from './ModelsPecosaBienes.js';
+import ModelsInvenInicial from './ModelsInvenInicial.js';
 
 const { DataTypes } = Sequelize;
 const ModelsPecosaPedidos = db.define('pecosa_pedidos', {
@@ -41,9 +40,8 @@ const ModelsPecosaPedidos = db.define('pecosa_pedidos', {
 
 }, { freezeTableName: true});
 
-ModelsBienes.belongsToMany(ModelsPecosaPedidos, { through:"pecosa_bienes", });
-ModelsPecosaPedidos.belongsToMany(ModelsBienes, { through:"pecosa_bienes", });
-
+ModelsInvenInicial.belongsToMany(ModelsPecosaPedidos, { through:"pecosa_bienes" });
+ModelsPecosaPedidos.belongsToMany(ModelsInvenInicial, { through:"pecosa_bienes" });
 
 
 ModelsPecosaPedidos.belongsTo(ModelsAdministrativos, { foreignKey: "id_administrativos" })

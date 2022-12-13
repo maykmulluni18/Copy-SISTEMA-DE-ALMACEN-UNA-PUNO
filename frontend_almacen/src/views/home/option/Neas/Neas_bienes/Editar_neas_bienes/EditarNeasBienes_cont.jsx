@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import Layout from "../../../../Layout";
 //import UNAP from "../UNAP.png";
 import "./editarneasbienes.scss"
-import MenuItem from '@mui/material/MenuItem';
-import { Select as MultiSelect } from '@mui/material';
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 
@@ -100,7 +97,8 @@ const EditarNeasBienes_cont = () => {
     }
 
 
-    return (<Layout>
+    return (
+    <>
         <div className='cont_editar_neas_bienes'>
             <div className="top">
                 <h1>Crear Bienes de las Neas</h1>
@@ -211,7 +209,7 @@ const EditarNeasBienes_cont = () => {
                 </div>
             </div>
         </div>
-    </Layout>
+    </>
     );
 }
 

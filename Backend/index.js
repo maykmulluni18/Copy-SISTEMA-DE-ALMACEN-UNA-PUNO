@@ -18,6 +18,9 @@ import RouteInvenrarioInicialFilterDate from  "./routers/invetariadoInicialFilte
 
 import RouteImportExel from "./routers/ExelInventariado.js"
 
+import Ejemp from "./routers/Ejemp.js"
+import Stock from "./routers/stoks.js"
+
 import session from "express-session"
 import dotenv from "dotenv"
 import SequelizeS from "connect-session-sequelize"
@@ -58,20 +61,24 @@ app.use(session({
 
 app.use('/login', RoutesLogin)
 app.use('/user', verifyUser, router)
-app.use('/admin', RoutesUsers)
-app.use('/sedes', RouteSedes)
-app.use('/bienes', verifyUser, adminOnly, RouteBienes)
+app.use('/admin',verifyUser, adminOnly, RoutesUsers)
+app.use('/sedes', verifyUser, RouteSedes)
+app.use('/bienes', verifyUser, RouteBienes)
 app.use('/neasbienes', verifyUser, RouteNeabienes)
 app.use('/neasentradas', verifyUser, RouteNeaEntradas)
 app.use('/neasbienesentradas', verifyUser, RouteBienesNeasEntradas)
 app.use('/pecosabienes', verifyUser, RoutePecosaBienes)
 app.use('/pecosapedidos', verifyUser, RoutePecosaPedidos)
-app.use('/pecosabienespedidos', verifyUser, RouteBienesPedidos)
+app.use('/pecosabienespedidos', RouteBienesPedidos)
 app.use('/metas', verifyUser, RouteMetas)
 app.use('/invetinicial', verifyUser, RouteIventarioInicial)
-app.use('/invetinicialfilterdate', RouteInvenrarioInicialFilterDate)
+app.use('/invetinicialfilterdate',verifyUser, RouteInvenrarioInicialFilterDate)
 
 app.use('/excelimport',RouteImportExel)
+
+app.use('/ejmp', Ejemp)
+app.use('/stock', Stock)
+
 
 try {
     await db.authenticate()

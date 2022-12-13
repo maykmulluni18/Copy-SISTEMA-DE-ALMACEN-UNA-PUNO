@@ -29,8 +29,6 @@ const TablaPecosaPedidos = () => {
 
 
     const deletePecosaPedidos = async (id) => {
-        const res = await axios.delete(`${URI}${id}`)
-        if (res.status === 200) {
             Swal.fire({
               title: 'Esta Seguro que Desea Eliminar?',
               icon: 'warning',
@@ -40,18 +38,18 @@ const TablaPecosaPedidos = () => {
               confirmButtonText: 'Si, Eliminar!',
               cancelButtonText: 'No, Canselar',
               timer: 15500
-            }).then((result) => {
+            }).then( async (result) => {
               if (result.isConfirmed) {
                 Swal.fire({
                   title: 'Eliminado!',
                   icon: 'success',
                   timer: 5500
                 })
+                const res = await axios.delete(`${URI}${id}`)
                 getPecosaPedidos(res.data)
 
               }
             })
-          }
        
     }
 

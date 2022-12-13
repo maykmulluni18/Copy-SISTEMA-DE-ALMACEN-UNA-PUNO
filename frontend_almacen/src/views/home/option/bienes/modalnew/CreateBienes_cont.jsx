@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import UNAP from "../UNAP.png";
 import "./createbienes.scss"
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';

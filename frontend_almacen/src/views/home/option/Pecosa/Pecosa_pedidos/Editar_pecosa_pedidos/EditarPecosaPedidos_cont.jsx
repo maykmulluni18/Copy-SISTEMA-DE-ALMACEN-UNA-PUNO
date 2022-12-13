@@ -5,6 +5,7 @@ import Layout from "../../../../Layout";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./editarpecosapedidos.scss"
+import FilterDataEdit from './FilterDataEdit';
 
 const URI = 'http://localhost:8000/pecosapedidos/'
 
@@ -12,21 +13,16 @@ const URI1 = 'http://localhost:8000/metas/'
 
 const URI3 = 'http://localhost:8000/sedes/'
 
-const URI4 = 'http://localhost:8000/user'
 
 const EditarPecosaPedidos_cont = () => {
     const [sedes, setSedes] = useState([])
-    const [administrativos, setAdministrativos] = useState([])
     const [metas, setMetas] = useState([])
 
     const getSedes = async () => {
         const res = await axios.get(URI3)
         setSedes(res.data)
     }
-    const getAdministrativos = async () => {
-        const res = await axios.get(URI4)
-        setAdministrativos(res.data)
-    }
+
 
     const getMetas = async () => {
         const res = await axios.get(URI1)
@@ -35,7 +31,6 @@ const EditarPecosaPedidos_cont = () => {
 
     useEffect(() => {
         getSedes()
-        getAdministrativos()
         getPedidosPecosa()
         getMetas()
     }, [])
@@ -125,20 +120,7 @@ const EditarPecosaPedidos_cont = () => {
                                     onChange={(e) => setIdAdministrativos(e.target.value)}
                                     required
                                 />
-                                <datalist className='datalistt' id="datap">
-                                    {
-                                        administrativos
-                                            .map(res => {
-                                                return (
-                                                    <option className='options' key={res.id} value={res.id}>'
-                                                        {res.nombres}' '
-                                                        {res.apellido_paterno}' '
-                                                        {res.apellido_materno}'
-                                                    </option>
-                                                )
-                                            })
-                                    }
-                                </datalist>
+                                <FilterDataEdit/>
                             </div>
                             <div className='formInput'>
                                 <label>Sedes </label>

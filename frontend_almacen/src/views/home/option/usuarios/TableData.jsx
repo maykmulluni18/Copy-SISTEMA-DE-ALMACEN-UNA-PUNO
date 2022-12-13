@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const URI = 'http://localhost:8000/user/'
 
@@ -26,9 +25,7 @@ const TableData = () => {
     setUsuarios(res.data)
   }
 
-  const deleteUsuarios = async (id) => {
-    const res = await axios.delete(`${URI}${id}`)
-    if (res.status === 200) {
+  const deleteUsuarios =  (id) => {
       Swal.fire({
         title: 'Esta Seguro que Desea Eliminar?',
         icon: 'warning',
@@ -38,17 +35,18 @@ const TableData = () => {
         confirmButtonText: 'Si, Eliminar!',
         cancelButtonText: 'No, Canselar',
         timer: 15500
-      }).then((result) => {
+      }).then( async (result) => {
         if (result.isConfirmed) {
           Swal.fire({
             title: 'Eliminado con Exito!',
             icon: 'success',
             timer: 5500
           })
+          const res = await axios.delete(`${URI}${id}`)
           getUsuarios(res.data)
         }
       })
-    }
+    
   }
 
 
@@ -60,10 +58,6 @@ const TableData = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton"><VisibilityIcon /></div>
-            </Link>
-
             <Link to={`edit/${params.id}`}>
               <div className="EditButton">
                 <EditIcon />

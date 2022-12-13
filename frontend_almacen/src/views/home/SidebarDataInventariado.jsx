@@ -1,18 +1,17 @@
-import InventoryIcon from '@mui/icons-material/Inventory';
-import SummarizeIcon from '@mui/icons-material/Summarize';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export const SidebarDataInventariado = [
     {
         title: 'Inventariado Inicial',
         path:'/inventariado-inicial',
-        icon: <InventoryIcon />,
+        icon: <ChevronRightIcon />,
         cName: 'nav-text'
 
     },
     {
-        title: 'Reportes de Inventariado',
+        title: 'Reporte Inventariado',
         path:'/reporte-inventariado',
-        icon: <SummarizeIcon />,
+        icon: <ChevronRightIcon />,
         cName: 'nav-text'
 
     }

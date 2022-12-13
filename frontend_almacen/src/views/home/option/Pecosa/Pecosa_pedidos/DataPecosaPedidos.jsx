@@ -19,7 +19,7 @@ export const userColumns = [
         headerName: 'Sedes',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 300,
+        width: 250,
         valueGetter: (params) =>
             `${params.row.sede.sede || ''}`,
     },
@@ -28,7 +28,7 @@ export const userColumns = [
         headerName: 'Metas',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 300,
+        width: 250,
         valueGetter: (params) =>
             `${params.row.Meta.obra || ''}`,
     },
@@ -41,6 +41,6 @@ export const userColumns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.bienes?.length}`,
+            `${params.row.inventarido_inicials?.length}`,
     }
 ];

@@ -10,7 +10,7 @@ const URI = 'http://localhost:8000/pecosabienes/'
 
 const URI1 = 'http://localhost:8000/pecosapedidos/'
 
-const URI2 = 'http://localhost:8000/bienes/'
+const URI2 = 'http://localhost:8000/invetinicial/'
 
 const EditarPecosaBienes_cont = () => {
     const [pecosapedidos, setPecosaPedidos] = useState([])
@@ -35,8 +35,6 @@ const EditarPecosaBienes_cont = () => {
     const [pecosaPedidoId, setPecosaPedidoId] = useState('')
     const [bieneId, setBieneId] = useState('')
     const [cantidad, setCantidad] = useState('')
-    const [p_unitario, setPUnitario] = useState('')
-    const [cuenta_contable, setCuentaContable] = useState('')
     const [observaciones, set_Observaciones] = useState('')
     const [fecha, setFecha] = useState('')
     const navigate = useNavigate()
@@ -48,8 +46,6 @@ const EditarPecosaBienes_cont = () => {
             pecosaPedidoId: pecosaPedidoId,
             bieneId: bieneId,
             cantidad: cantidad,
-            p_unitario: p_unitario,
-            cuenta_contable: cuenta_contable,
             observaciones: observaciones,
             fecha: fecha
         })
@@ -84,8 +80,6 @@ const EditarPecosaBienes_cont = () => {
         setPecosaPedidoId(res.data.pecosaPedidoId)
         setBieneId(res.data.bieneId)
         setCantidad(res.data.cantidad)
-        setPUnitario(res.data.p_unitario)
-        setCuentaContable(res.data.cuenta_contable)
         set_Observaciones(res.data.observaciones)
         setFecha(res.data.fecha)
     }
@@ -143,33 +137,6 @@ const EditarPecosaBienes_cont = () => {
                                 </datalist>
                             </div>
 
-                            <div className="formInput" >
-                                <label>Cantidad</label>
-                                <input
-                                    value={cantidad}
-                                    onChange={(e) => setCantidad(e.target.value)}
-                                    type="number"
-                                    required
-                                />
-                            </div>
-                            <div className="formInput">
-                                <label>Precio Unitario</label>
-                                <input
-                                    value={p_unitario}
-                                    onChange={(e) => setPUnitario(e.target.value)}
-                                    type="number"
-                                    required
-                                />
-                            </div>
-                            <div className="formInput">
-                                <label>Cuenta Contable</label>
-                                <input
-                                    value={cuenta_contable}
-                                    onChange={(e) => setCuentaContable(e.target.value)}
-                                    type="number"
-                                    required
-                               />
-                            </div>
                             <div className="formInput">
                                 <label>Observaciones</label>
                                 <input

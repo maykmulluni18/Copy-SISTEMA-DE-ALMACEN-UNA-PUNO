@@ -1,8 +1,7 @@
 import db from '../database/db.js';
 import { Sequelize } from "sequelize";
-import ModelsBienes from './ModelsBienes.js';
 import ModelsPecosaPedidos from "./ModelsPecosaPedidos.js"
-
+import ModelsInvenInicial from "../models/ModelsInvenInicial.js"
 const { DataTypes } = Sequelize;
 const ModelsPecosaBienes = db.define('pecosa_bienes', {
 
@@ -17,22 +16,11 @@ const ModelsPecosaBienes = db.define('pecosa_bienes', {
         allowNull: false,
         
     },
-    bieneId: {
+    inventaridoInicialId: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
     cantidad: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        
-
-    },
-    p_unitario: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-
-    },
-    cuenta_contable: {
         type: DataTypes.INTEGER,
         allowNull: false,
         
@@ -62,8 +50,8 @@ ModelsPecosaPedidos.hasOne(ModelsPecosaBienes, {
     }
 })
 
-ModelsPecosaBienes.belongsTo(ModelsBienes, { foreignKey: "bieneId" })
-ModelsBienes.hasOne(ModelsPecosaBienes, {
+ModelsPecosaBienes.belongsTo(ModelsInvenInicial, { foreignKey: "inventaridoInicialId" })
+ModelsInvenInicial.hasOne(ModelsPecosaBienes, {
     foreignKey: {
         name: 'id',
     }

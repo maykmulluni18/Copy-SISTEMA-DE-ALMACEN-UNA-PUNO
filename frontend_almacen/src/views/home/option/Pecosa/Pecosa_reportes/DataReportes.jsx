@@ -31,6 +31,6 @@ export const userColumns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.bienes?.length}`,
+            `${params.row.inventarido_inicials?.length}`,
     }
 ];

@@ -1,25 +1,13 @@
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import Layout from '../../../Layout';
+import React, { useState } from 'react';
 //import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2'
 import axios from 'axios';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import "./createnew.scss"
 
 const URI = 'http://localhost:8000/user/'
 
 const CreateAdministrativos_cont = () => {
-
-    const [usuarios, setUsuarios] = useState([])
-    useEffect(() => {
-        getUsuarios()
-    }, [])
-
-    const getUsuarios = async () => {
-        const res = await axios.get(URI)
-        setUsuarios(res.data)
-    }
 
     const [n_documento, setNdocumento] = useState('')
     const [apellido_paterno, setApellidopaterno] = useState('')
@@ -57,17 +45,6 @@ const CreateAdministrativos_cont = () => {
 
     }
 
-    const alertsave = () => {
-
-        Swal.fire(
-            {
-                title: 'Good job!',
-                text: 'You clicked the button!',
-                icon: 'success',
-                timer: 5500
-            }
-        )
-    }
 
     /*Calenadrio modal*/
     return (

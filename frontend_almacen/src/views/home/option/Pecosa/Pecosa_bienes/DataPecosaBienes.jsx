@@ -3,20 +3,36 @@ export const userColumns = [
 
     { field: 'id', headerName: 'ID', width: 50 },
     { field: 'pecosaPedidoId', headerName: 'Pecosa', width: 80 },
-    { field: 'bieneId', headerName: 'Bien', width: 60 },
+    { field: 'inventaridoInicialId', headerName: 'Bien', width: 60 },
 
     {
-        field: 'Bienes Descripcion',
+        field: 'Bienes_Descripcion',
         headerName: 'Bienes Descripcion',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
         width: 350,
         valueGetter: (params) =>
-            `${params.row.biene.description || ''}`,
+            `${params.row.inventarido_inicial.descripcion || ''}`,
+    },
+    {
+        field: 'items',
+        headerName: 'Item',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 90,
+        valueGetter: (params) =>
+            `${params.row.inventarido_inicial.item || ''}`,
+    },
+    {
+        field: 'u_medida',
+        headerName: 'U. Medida',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 90,
+        valueGetter: (params) =>
+            `${params.row.inventarido_inicial.unidad || ''}`,
     },
     { field: 'cantidad', headerName: 'Cantidad', width: 100 },
-    { field: 'cuenta_contable', headerName: 'Cuenta Contable', width: 140 },
-    { field: 'p_unitario', headerName: 'P.Unitario', width: 110 },
     { field: 'observaciones', headerName: 'Observaciones', width: 210 },    
     { field: 'fecha', headerName: 'Fecha de Pedido', width: 140 },
     {
@@ -26,6 +42,6 @@ export const userColumns = [
         sortable: false,
         width: 100,
         valueGetter: (params) =>
-            `${params.row.cantidad || ''}` * `${params.row.p_unitario || ''}`,
+            `${params.row.cantidad || ''}` * `${params.row.inventarido_inicial.precio || ''}`,
     },
 ];

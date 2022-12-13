@@ -11,6 +11,7 @@ import { LoginUser, reset } from "../home/auth/Authen";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useCallback } from "react"
 
 import "./Login_p.scss"
 import UNAP from "./img/unap_1.png";
@@ -18,6 +19,8 @@ import Video from "./video/una.mp4";
 
 
 const Login_inicio = () => {
+    const vid = useCallback((x) => x.volume = 0.5)
+
     const [values, setValues] = useState({
         usua: "",
         pass: "",
@@ -90,7 +93,7 @@ const Login_inicio = () => {
                                 justifyContent: 'center'
                             }}
                         >
-                            
+
 
                             <Box
                                 sx={{
@@ -102,21 +105,21 @@ const Login_inicio = () => {
                                 }}
                             >
                                 <Box
-                                sx={{
-                                    alignItems: 'center',
-                                    textAlign: 'center',
-                                    justifyContent: 'center',
-                                    top: '-50%',
-                                }}
-                            >
-                                <div className='imagen'>
-                                    <img
-                                        src={UNAP}
-                                        alt="logo"
-                                        className="logo" />
-                                </div>
+                                    sx={{
+                                        alignItems: 'center',
+                                        textAlign: 'center',
+                                        justifyContent: 'center',
+                                        top: '-50%',
+                                    }}
+                                >
+                                    <div className='imagen'>
+                                        <img
+                                            src={UNAP}
+                                            alt="logo"
+                                            className="logo" />
+                                    </div>
 
-                            </Box>
+                                </Box>
 
                                 <Typography
                                     sx={{
@@ -229,36 +232,11 @@ const Login_inicio = () => {
 
                         }}
                     >
-                        <Box sx={{ p: 3 }}>
-                            <Typography
-                                align="center"
-                                color="inherit"
-                                sx={{
-                                    fontSize: '24px',
-                                    lineHeight: '32px',
-                                    mb: 1
-                                }}
-                                variant="h1"
-                            >
-                                ....
-                                <Box
-                                    component="a"
-                                    href="https://zalter.com?ref=devias-mk-react"
-                                    sx={{ color: '#15B79E' }}
-                                    target="_blank"
-                                >
-                                    ...
-                                </Box>
-                            </Typography>
-                            <Typography
-                                align="center"
-                                sx={{ mb: 3 }}
-                                variant="subtitle1"
-                            >
-                                .....
-                            </Typography>
 
-                        </Box>
+                        {/*   <video ref={vid} src={Video} autoplay width="1500" height="719" controls loop preload="auto">
+                        
+                        </video>  
+                        */}
                     </Grid>
                 </Grid>
             </Box>
