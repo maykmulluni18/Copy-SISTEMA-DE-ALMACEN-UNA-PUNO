@@ -7,6 +7,6 @@ Instalar npm
  npm start
  
 # React
- yarn install
+ yarn install ;
  yarn start
  
