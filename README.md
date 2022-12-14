@@ -1,7 +1,7 @@
 # SISTEMA-DE-ALMACEN-UNA-PUNO
 # Backend
 # Paso 1:
-Instalar npm
+- Instalar npm
 # Paso 2:
 - npm install
 - npm start
